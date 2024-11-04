@@ -682,6 +682,9 @@ a.button{
 /* Media Queries */
 
 @media screen and (max-width: 1000px) {
+    .services-Slider .carousel-item .container{
+        padding: 0px 60px !important;
+    }
     .two-parts_section {
         grid-template-columns: 1fr;
     }
@@ -777,6 +780,13 @@ a.button{
     .carousel-item{
         padding: 0px 60px;
     }
+    
+    .services-Slider .carousel-item .container{
+        padding: 0px !important;
+    }
+    .services-Slider .carousel-item .container .col-md-4{
+        margin-top: 20px;
+    }
 }
 
 
@@ -823,3 +833,33 @@ a.button{
     color: var(--secondary-color);
 }
 
+.services-Slider .carousel-item .card{
+ border-radius: 30px !important;
+ transition: 0.5s;
+
+}
+.services-Slider .carousel-item .card-body{
+text-align: center !important;
+}
+
+.services-Slider .slider-btn{
+    margin-top: 8% !important;
+    margin-left: 2% !important;
+    margin-right: 2% !important;
+}
+.services-Slider .carousel-item .card:hover{
+    box-shadow: 0 0 8px RGBa(0, 0, 0, 0.25) !important;
+    background-color: var(--main-color) !important;
+    transition: 0.5s;
+}
+.services-Slider .carousel-item .card:hover .services-btn{
+    color: white !important;
+}
+.services-Slider .carousel-item .card-body .card-text{
+    margin: 25px 0px !important;
+}
+ .services-btn{
+    font-size: 16px;
+    color: var(--main-color);
+    text-align: center;
+}
