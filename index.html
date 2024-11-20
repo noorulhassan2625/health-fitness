@@ -74,7 +74,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link " href="./services.html">Services</a>
+                <a class="nav-link" href="./services.html">Services</a>
               </li>
 
               <li class="nav-item">
@@ -374,6 +374,68 @@
           </div>
         </div>
       </section>
+
+      <section class="tables-data mb-5 pb-3">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-md-8">
+              <h2>Nutritional Information</h2>
+              <div
+                id="nutritionContainer"
+                class="p-0 p-md-4 p-lg-4 border rounded"
+              >
+              <div class="p-4 p-md-0 p-lg-0">
+                <label for="foodInput" class="form-label"
+                  >Enter a food item:</label
+                >
+                <input
+                  type="text"
+                  id="foodInput"
+                  class="form-control mb-3"
+                  placeholder="e.g., Apple, Banana"
+                />
+                <button id="getNutrition" class="Web-button">
+                  Get Nutrition Info
+                </button>
+              </div>
+                <table id="nutritionTable" class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Food</th>
+                      <th>Calories</th>
+                      <th>Protein</th>
+                      <th>Fat</th>
+                      <th>Carbohydrates</th>
+                    </tr>
+                  </thead>
+                  <tbody id="nutritionTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div>
+                <h2>Weather Information</h2>
+                <label for="cityInput">Enter City:</label>
+                <input
+                  type="text"
+                  id="cityInput"
+                  placeholder="E.g., London, New York"
+                  class="form-control"
+                />
+                <button id="getWeather" class="Web-button">Get Weather</button>
+                <div
+                  id="weatherOutput"
+                  style="display: none; margin-top: 10px"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <!-- <h2 class="text-center">Current Weather</h2>
+          <div id="weatherContainer" class="p-4 border rounded mb-5">
+            <p id="weatherLoading" class="text-center">Loading weather data...</p>
+          </div> -->
+        </div>
+      </section>
     </main>
     <footer>
       <div class="footer_content">
@@ -448,3 +510,102 @@
     </footer>
   </body>
 </html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // === WEATHER SERVICE ===
+    const weatherButton = document.getElementById('getWeather')
+    const cityInput = document.getElementById('cityInput')
+    const weatherOutput = document.getElementById('weatherOutput')
+
+    weatherButton.addEventListener('click', function () {
+      const city = cityInput.value.trim()
+      if (!city) {
+        alert('Please enter a city name.')
+        return
+      }
+
+      // Replace with your OpenWeatherMap API key
+      const apiKey = 'e997266b1324e86b3bfecddfe3e8913d' // Example: '12345abcdef67890'
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+        city
+      )}&units=metric&appid=${apiKey}`
+
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`)
+          }
+          return response.json()
+        })
+        .then(data => {
+          const { name, main, weather } = data
+          const temperature = main.temp
+          const description = weather[0].description
+          const humidity = main.humidity
+
+          weatherOutput.innerHTML = `
+          <h3>Weather in ${name}</h3>
+          <p>Temperature: ${temperature}°C</p>
+          <p>Condition: ${description}</p>
+          <p>Humidity: ${humidity}%</p>
+        `
+          weatherOutput.style.display = 'block'
+        })
+        .catch(error => {
+          console.error('Error fetching weather data:', error)
+          alert(`Error fetching weather data: ${error.message}`)
+        })
+    })
+
+    // === NUTRITION SERVICE ===
+    const getNutritionButton = document.getElementById('getNutrition')
+    const foodInput = document.getElementById('foodInput')
+    const nutritionTable = document.getElementById('nutritionTable')
+    const nutritionTableBody = document.getElementById('nutritionTableBody')
+
+    getNutritionButton.addEventListener('click', function () {
+      const food = foodInput.value.trim()
+      if (!food) {
+        alert('Please enter a food item.')
+        return
+      }
+
+      // Use the provided Application ID and Application Key
+      const appId = '77dd7669'
+      const apiKey = '4918ff8e883b7e86318a5d7257ed5906'
+
+      const apiUrl = `https://api.edamam.com/api/food-database/v2/parser?ingr=${encodeURIComponent(
+        food
+      )}&app_id=${appId}&app_key=${apiKey}`
+      
+
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          if (data.parsed.length === 0) {
+            alert('No nutrition data found for the entered food.')
+            return
+          }
+          const foodData = data.parsed[0].food.nutrients
+
+          const rowHTML = `
+          <tr>
+            <td>${food}</td>
+            <td>${foodData.ENERC_KCAL || 'N/A'} kcal</td>
+            <td>${foodData.PROCNT || 'N/A'} g</td>
+            <td>${foodData.FAT || 'N/A'} g</td>
+            <td>${foodData.CHOCDF || 'N/A'} g</td>
+          </tr>
+        `
+
+          nutritionTableBody.innerHTML = rowHTML
+          nutritionTable.style.display = 'table'
+        })
+        .catch(error => {
+          alert('Failed to fetch nutrition data. Please try again.')
+          console.error(error)
+        })
+    })
+  })
+</script>

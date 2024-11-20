@@ -467,7 +467,7 @@ main .contact_content .website_logo {
 
 main .contact_content iframe {
   max-width: 100%;
-  height: 200px;
+  height: 300px;
   border-radius: 16px;
   box-shadow: 0 0 8px #eaeaea;
 }
@@ -480,7 +480,6 @@ main .contact_content .contact_info {
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: space-between;
   padding: 32px 0;
 }
 
@@ -527,10 +526,10 @@ form.contact_form textarea {
   display: block;
 }
 
-form.contact_form label,
+/* form.contact_form label,
 form.contact_form h4 {
   margin-top: 16px;
-}
+} */
 
 form.contact_form label.required::after {
   content: ' *';
@@ -626,6 +625,25 @@ a.button {
   margin-top: 16px;
   font-size: 1.175rem;
 }
+
+
+
+
+.Web-button{
+  display: block;
+  background-color: var(--main-color);
+  color: white;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  box-shadow: 0 0 8px var(--main-color);
+  width: fit-content;
+  font-weight: 600;
+  margin: 16px 0px;
+  font-size: 14px;
+  border: 1px solid var(--main-color) !important;
+}
+
 
 .slider-btn {
   display: block;
@@ -872,4 +890,8 @@ a.button {
   border-radius: 30px !important;
   height: 200px;
   margin: 15px;
+}
+.error {
+  color: red;
+  font-size: 0.9em;
 }

@@ -1,0 +1,31 @@
+[
+    {
+      "id": 1,
+      "name": "Weight Loss Program",
+      "duration": "12 Weeks",
+      "price": "$199",
+      "description": "A comprehensive plan focusing on calorie deficit and cardio training."
+    },
+    {
+      "id": 2,
+      "name": "Muscle Building Program",
+      "duration": "16 Weeks",
+      "price": "$299",
+      "description": "Designed to help you gain muscle mass with strength training."
+    },
+    {
+      "id": 3,
+      "name": "Yoga and Flexibility Program",
+      "duration": "8 Weeks",
+      "price": "$149",
+      "description": "Enhance your flexibility and mindfulness through structured yoga sessions."
+    },
+    {
+      "id": 4,
+      "name": "Nutrition Coaching",
+      "duration": "4 Weeks",
+      "price": "$99",
+      "description": "Personalized meal plans tailored to your fitness goals."
+    }
+  ]
+  
