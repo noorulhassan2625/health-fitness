@@ -3,28 +3,28 @@
       "id": 1,
       "name": "Weight Loss Program",
       "duration": "12 Weeks",
-      "price": "$199",
+      "price": "AED 180",
       "description": "A comprehensive plan focusing on calorie deficit and cardio training."
     },
     {
       "id": 2,
       "name": "Muscle Building Program",
       "duration": "16 Weeks",
-      "price": "$299",
+      "price": "AED 360",
       "description": "Designed to help you gain muscle mass with strength training."
     },
     {
       "id": 3,
       "name": "Yoga and Flexibility Program",
       "duration": "8 Weeks",
-      "price": "$149",
+      "price": "AED 720",
       "description": "Enhance your flexibility and mindfulness through structured yoga sessions."
     },
     {
       "id": 4,
       "name": "Nutrition Coaching",
       "duration": "4 Weeks",
-      "price": "$99",
+      "price": "AED 50",
       "description": "Personalized meal plans tailored to your fitness goals."
     }
   ]
